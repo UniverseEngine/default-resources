@@ -1,0 +1,5 @@
+<meta>
+    <info name="Pickups" description="(Some) pickup logic from the game to JS" author="lucx" />
+
+    <script type="client" src="client.js" lang="javascript" />
+</meta>
