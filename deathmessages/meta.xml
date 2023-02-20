@@ -1,0 +1,6 @@
+<meta>
+    <info name="Death Messages" description="" author="lucx" />
+
+    <script type="server" src="server.js" lang="javascript" />
+    <script type="client" src="client.js" lang="javascript" />
+</meta>
