@@ -1,0 +1,5 @@
+<meta>
+    <info name="Respawn logic" description="Respawn logic from the game to JavaScript" author="lucx" />
+
+    <script type="client" src="client.js" lang="javascript" />
+</meta>
