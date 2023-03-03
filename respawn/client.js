@@ -27,8 +27,7 @@ addEventHandler("OnRender", () => {
       break;
     case WBSTATE.WASTED:
       if ((timer.getTimeInMilliseconds() - wbtime > 0x800) && (timer.getPreviousTimeInMilliseconds() - wbtime <= 0x800)) {
-        camera.setFadeColour(200, 200, 200);
-        camera.fade(2.0, 0 /* FADE_OUT */);
+        camera.fade(new RGB(200, 200, 200, 255), 2.0, 0 /* FADE_OUT */);
       }
 
       if (timer.getTimeInMilliseconds() - wbtime >= 0x1000) {
@@ -44,8 +43,7 @@ addEventHandler("OnRender", () => {
 
         gta.respawnPlayer(pos, 0.0);
 
-        camera.setFadeColour(200, 200, 200);
-        camera.fade(4.0, 1 /* FADE_IN */);
+        camera.fade(new RGB(200, 200, 200, 255), 4.0, 1 /* FADE_IN */);
       }
       break;
 
