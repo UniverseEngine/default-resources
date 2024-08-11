@@ -1,0 +1,5 @@
+<meta>
+    <info name="Player Blips" description="Attach player blips to each player" author="lucx" />
+
+    <script type="client" src="client.js" lang="javascript" />
+</meta>
