@@ -15,6 +15,7 @@ const WEAPONTYPE = {
   DETONATOR: 12,
   HELICANNON: 13,
   ARMOUR: 15,
+  RAMMEDBYCAR: 16,
   RUNOVERBYCAR: 17,
   EXPLOSION: 18,
   UZI_DRIVEBY: 19,
@@ -22,10 +23,6 @@ const WEAPONTYPE = {
   FALL: 21,
   UNIDENTIFIED: 22
 };
-
-addEventHandler("OnResourceStart", () => {
-  registerRemoteFunc("deathmessage");
-});
 
 const getWeaponNameFromType = (type) => {
   switch (type) {
@@ -59,6 +56,8 @@ const getWeaponNameFromType = (type) => {
       return "Heli Cannon";
     case WEAPONTYPE.ARMOUR:
       return "Armour";
+    case WEAPONTYPE.RAMMEDBYCAR:
+      return "Rammed By Car";
     case WEAPONTYPE.RUNOVERBYCAR:
       return "Run Over By Car";
     case WEAPONTYPE.EXPLOSION:
@@ -93,19 +92,31 @@ const getBodyPartName = (pedPiece) => {
   }
 }
 
-function deathmessage(attackerId, pedId, method /* eWeaponType */, pedPiece /* ePedPieceTypes */) {
+addEventHandler("OnPedWasted", (victim, attacker, method, pedPiece) => {
 
-  const attacker = getElement(attackerId), ped = getElement(pedId);
-  const attackerClient = getClientFromPlayerElement(attacker), pedClient = getClientFromPlayerElement(ped);
+  let victimClient = null;
+  if (victim.elementType == ELEMENTTYPE_PLAYER) {
+    victimClient = getClientFromPlayerElement(victim);
+  }
 
-  if (!attackerClient || !pedClient)
+  if (!victimClient)
     return;
 
-  if (attackerId == pedId)
-  {
-    message(`${pedClient.name} died`);
+  if (!attacker || victim.id == attacker.id) {
+    message(`${victimClient.name} died`);
     return;
   }
+
+  let attackerClient = null;
+  if (attacker.elementType == ELEMENTTYPE_PLAYER) {
+    attackerClient = getClientFromPlayerElement(attacker);
+  }
+  else if (attacker.elementType == ELEMENTTYPE_AUTOMOBILE) {
+    attackerClient = getClientFromPlayerElement(attacker.driver);
+  }
+
+  if (!attackerClient)
+    return;
   
-  message(`Attacker ${attackerClient.name} killed ${pedClient.name} using ${getWeaponNameFromType(method)} (${getBodyPartName(pedPiece)})`);
-}
+  message(`${attackerClient.name} killed ${victimClient.name} using ${getWeaponNameFromType(method)} (${getBodyPartName(pedPiece)})`);
+})
