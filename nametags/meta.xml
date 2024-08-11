@@ -1,0 +1,7 @@
+<meta>
+    <info name="Nametags" description="nodesc" author="lucx" />
+
+    <script type="client" src="client.js" lang="javascript" />
+
+    <file src="nametag.rml" />
+</meta>
