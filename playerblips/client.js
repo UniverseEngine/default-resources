@@ -4,11 +4,13 @@ const playerBlips = new Map();
 addEventHandler("OnElementStreamIn", (element) => {
   switch (element.elementType) {
     case ELEMENTTYPE_PLAYER:
-      const shouldBeAdded = (localClient.player && localClient.player.id != element.id);
-      if (shouldBeAdded) {
-        const blip = createBlip(element.position, 2.0, new RGBA(255, 255, 255, 255), RADAR_SPRITE_NONE, element);
-        playerBlips.set(element.id, blip.id);
+      if (localClient.player) {
+        if (localClient.player.id == element.id)
+          return;
       }
+      
+      const blip = createBlip(element.position, 2.0, new RGBA(255, 255, 255, 255), RADAR_SPRITE_NONE, element);
+      playerBlips.set(element.id, blip.id);
       break;
   }
 });

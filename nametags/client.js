@@ -3,9 +3,12 @@ let playerList = [];
 addEventHandler("OnElementStreamIn", (element) => {
   switch (element.elementType) {
     case ELEMENTTYPE_PLAYER:
-      const shouldBeAdded = (localClient.player && localClient.player.id != element.id);
-      if (shouldBeAdded)
-        playerList.push(element.id);
+      if (localClient.player) {
+        if (localClient.player.id == element.id)
+          return;
+      }
+      
+      playerList.push(element.id);
       break;
   }
 });
