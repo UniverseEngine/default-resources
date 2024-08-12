@@ -1,0 +1,7 @@
+<meta>
+    <info name="Simple scoreboard" description="" author="lucx" />
+
+    <script type="client" src="client.js" lang="javascript" />
+
+    <file src="scoreboard.rml"/>
+</meta>
