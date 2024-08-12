@@ -1,0 +1,5 @@
+<meta>
+    <info name="Freecam" description="Freeviewcam ported from Liberty Unleashed" author="Juppi" />
+
+    <script type="client" src="client.js" lang="javascript" />
+</meta>
